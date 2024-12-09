@@ -88,3 +88,29 @@ def english_cleaners(text):
   text = expand_abbreviations(text)
   text = collapse_whitespace(text)
   return text
+
+def english_cleaners(text):
+  '''Pipeline for English text, including number and abbreviation expansion.'''
+  text = convert_to_ascii(text)
+  text = lowercase(text)
+  text = expand_numbers(text)
+  text = expand_abbreviations(text)
+  text = collapse_whitespace(text)
+  return text
+
+def arabic_cleaners(text):
+    """
+    This function cleans Arabic text by removing unwanted characters and normalizing the text.
+    """
+    # Remove any non-Arabic characters that are not part of the Arabic alphabet or common punctuation
+    text = re.sub(r'[^\u0621-\u064A\s\.,!?؟؛:()[]{}]', '', text)
+    
+    # Remove excessive punctuation marks
+    text = re.sub(r'[؟؟]', '?', text)  # Normalize Arabic question marks
+    text = re.sub(r'[؛]', ';', text)  # Normalize semicolons
+    text = re.sub(r'[،]', ',', text)  # Normalize commas
+    
+    # Remove extra spaces
+    text = re.sub(r'\s+', ' ', text).strip()  # Remove extra spaces
+
+    return text
