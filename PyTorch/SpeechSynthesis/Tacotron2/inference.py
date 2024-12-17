@@ -221,7 +221,7 @@ def main():
 
     texts = []
     try:
-        f = open(args.input, 'r')
+        f = open(args.input, 'r', encoding='utf-8')
         texts = f.readlines()
     except:
         print("Could not read file")
